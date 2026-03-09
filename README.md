@@ -1,4 +1,4 @@
-# myshell — A Custom Linux Shell in C
+# MiniShell — A Custom Linux Shell in C
 
 > A university OS project demonstrating core POSIX concepts:
 > process creation, pipes, I/O redirection, signal handling, and job control.
@@ -71,7 +71,7 @@ This cycle is called the **REPL** (Read-Eval-Print Loop).
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                         myshell                             │
+│                         MiniShell                             │
 │                                                             │
 │  ┌──────────┐    ┌──────────┐    ┌───────────────────────┐  │
 │  │  shell.c │───▶│ parser.c │───▶│     executor.c        │  │
@@ -113,7 +113,7 @@ This cycle is called the **REPL** (Read-Eval-Print Loop).
 ## File Structure
 
 ```
-myshell/
+MiniShell/
 ├── main.c          Entry point; calls shell_init() + shell_loop()
 ├── shell.h         Shared constants, ANSI colours, history API
 ├── shell.c         REPL, prompt, signal handlers, history ring buffer
@@ -140,21 +140,21 @@ myshell/
 
 ```bash
 # Clone / copy files into a directory, then:
-cd myshell
+cd MiniShell
 make
 ```
 
 ### Run
 
 ```bash
-./myshell
+./MiniShell
 ```
 
 ### Debug build (AddressSanitizer + UBSan)
 
 ```bash
 make debug
-./myshell
+./MiniShell
 ```
 
 ### Check for memory leaks
@@ -223,47 +223,47 @@ sleep 10 &                      # background sleep
 
 ```
   ╔══════════════════════════════════════════════════╗
-  ║         myshell  —  a custom Linux shell         ║
+  ║         MiniShell  —  a custom Linux shell         ║
   ╚══════════════════════════════════════════════════╝
 
-user@host:~ myshell> pwd
+user@host:~ MiniShell> pwd
 /home/user
 
-user@host:~ myshell> echo "hello world"
+user@host:~ MiniShell> echo "hello world"
 hello world
 
-user@host:~ myshell> ls | grep ".c" | sort
+user@host:~ MiniShell> ls | grep ".c" | sort
 builtins.c
 executor.c
 main.c
 parser.c
 shell.c
 
-user@host:~ myshell> cat /etc/os-release | grep NAME | head -1
+user@host:~ MiniShell> cat /etc/os-release | grep NAME | head -1
 NAME="Ubuntu"
 
-user@host:~ myshell> echo "line1" > /tmp/demo.txt
-user@host:~ myshell> echo "line2" >> /tmp/demo.txt
-user@host:~ myshell> cat /tmp/demo.txt
+user@host:~ MiniShell> echo "line1" > /tmp/demo.txt
+user@host:~ MiniShell> echo "line2" >> /tmp/demo.txt
+user@host:~ MiniShell> cat /tmp/demo.txt
 line1
 line2
 
-user@host:~ myshell> sort < /tmp/demo.txt
+user@host:~ MiniShell> sort < /tmp/demo.txt
 line1
 line2
 
-user@host:~ myshell> sleep 5 &
+user@host:~ MiniShell> sleep 5 &
 [background] pid 12345
 
-user@host:~ myshell> history
+user@host:~ MiniShell> history
      1  pwd
      2  echo "hello world"
      ...
 
-user@host:~ myshell> cd /tmp
-user@host:/tmp myshell> cd -
+user@host:~ MiniShell> cd /tmp
+user@host:/tmp MiniShell> cd -
 /home/user
-user@host:~ myshell> exit
+user@host:~ MiniShell> exit
 Goodbye!
 ```
 
@@ -294,7 +294,7 @@ Goodbye!
 |---------|-------|
 | **Job control** (`fg`, `bg`, `jobs`) | Requires `tcsetpgrp` and proper SIGTSTP handling |
 | **Tab completion** | Use `readline` or `libedit` |
-| **Command history persistence** | Write history to `~/.myshell_history` on exit |
+| **Command history persistence** | Write history to `~/.MiniShell_history` on exit |
 | **Environment variable expansion** | `$VAR` and `${VAR}` substitution in the parser |
 | **Glob expansion** | Use `glob(3)` to expand `*`, `?`, `[...]` |
 | **Here documents** | `cmd << EOF` |
